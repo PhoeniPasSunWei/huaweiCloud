@@ -1,0 +1,6 @@
+1.用户登录 经过 JwtAuthenticationTokenFilter 过滤器 用户请求无token 安全框架配置类对 /user/login 放行
+2.用户请求 /user/login 接口 登录 利用  authenticationManager //进行用户认证
+    2.1 创建UserDetails的实现类  请求后台查询用户信息 保存到 UserDetails对象中
+    2.2 利用用户id 生成一个jwt
+3.用户请求别的API  携带 2.2生成的jwt 访问   经过 JwtAuthenticationTokenFilter 过滤器
+利用SecurityContextHolder把 用户信息存储到 filterChain  所有filter检测吃果放行  请求 对应的API
